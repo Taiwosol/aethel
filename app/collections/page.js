@@ -23,6 +23,7 @@ export default function CollectionsPage() {
   const handleWishlistClick = (product) => {
     if (product.sizes.length === 1) {
       addToWishlist(product, product.sizes[0]);
+      setSelectedSize({ ...selectedSize, [product.id]: product.sizes[0] });
     } else {
       setShowSizeSelector(showSizeSelector === product.id ? null : product.id);
     }
@@ -41,11 +42,19 @@ export default function CollectionsPage() {
 
         <main className="px-6 py-12 max-w-7xl mx-auto">
           <div className="mb-8">
-            <h1 className="text-5xl md:text-7xl font-light text-gray-900 mb-4">The Editorial AW24</h1>
-            <p className="text-gray-600 max-w-xl">A curated selection of timeless silhouettes, crafted from ethically sourced fabrics. This season explores the intersection of brutalist architecture and organic fluid movements.</p>
+            <h1 className="text-5xl md:text-7xl font-light text-gray-900 mb-4">
+              The Editorial AW24
+            </h1>
+            <p className="text-gray-600 max-w-xl">
+              A curated selection of timeless silhouettes, crafted from
+              ethically sourced fabrics. This season explores the intersection
+              of brutalist architecture and organic fluid movements.
+            </p>
           </div>
 
-          <p className="text-sm text-gray-500 mb-8">Showing {products.length} products</p>
+          <p className="text-sm text-gray-500 mb-8">
+            Showing {products.length} products
+          </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {currentProducts.map((product) => (
@@ -63,7 +72,17 @@ export default function CollectionsPage() {
                   >
                     <svg
                       className="w-5 h-5"
-                      fill={isInWishlist(product.id, selectedSize[product.id]) ? "currentColor" : "none"}
+                      fill={
+                        isInWishlist(
+                          product.id,
+                          selectedSize[product.id] ||
+                            (product.sizes.length === 1
+                              ? product.sizes[0]
+                              : undefined),
+                        )
+                          ? "currentColor"
+                          : "none"
+                      }
                       stroke="currentColor"
                       viewBox="0 0 24 24"
                     >
@@ -77,13 +96,15 @@ export default function CollectionsPage() {
                   </button>
                   {showSizeSelector === product.id && (
                     <div className="absolute inset-0 bg-white/95 flex flex-col items-center justify-center p-4">
-                      <p className="text-sm font-medium mb-4">Select Size</p>
+                      <p className="text-sm font-medium mb-4 text-gray-900">
+                        Select Size
+                      </p>
                       <div className="flex flex-wrap gap-2 justify-center">
                         {product.sizes.map((size) => (
                           <button
                             key={size}
                             onClick={() => handleSizeSelect(product, size)}
-                            className="px-4 py-2 border border-gray-300 hover:border-gray-900 hover:bg-gray-900 hover:text-white transition-colors cursor-pointer"
+                            className="px-4 py-2 border border-gray-300 text-gray-900 hover:border-gray-900 hover:bg-gray-900 hover:text-white transition-colors cursor-pointer"
                           >
                             {size}
                           </button>
@@ -91,14 +112,16 @@ export default function CollectionsPage() {
                       </div>
                       <button
                         onClick={() => setShowSizeSelector(null)}
-                        className="mt-4 text-sm text-gray-500 hover:text-gray-900 cursor-pointer"
+                        className="mt-4 text-sm text-gray-900 hover:text-gray-500 cursor-pointer"
                       >
                         Cancel
                       </button>
                     </div>
                   )}
                 </div>
-                <h3 className="text-lg font-light text-gray-900 mb-1">{product.name}</h3>
+                <h3 className="text-lg font-light text-gray-900 mb-1">
+                  {product.name}
+                </h3>
                 <p className="text-gray-600">${product.price}</p>
               </div>
             ))}
@@ -110,35 +133,61 @@ export default function CollectionsPage() {
               disabled={currentPage === 1}
               className="text-gray-500 hover:text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center gap-1 md:gap-2 text-xs md:text-sm tracking-wider"
             >
-              <svg className="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              <svg
+                className="w-3 h-3 md:w-4 md:h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 19l-7-7 7-7"
+                />
               </svg>
               <span className="hidden sm:inline">PREVIOUS</span>
             </button>
             <div className="flex gap-1 md:gap-4 items-center">
-              {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                <button
-                  key={page}
-                  onClick={() => setCurrentPage(page)}
-                  className={`px-1 py-0.5 md:px-2 md:py-1 text-xs md:text-sm cursor-pointer relative ${
-                    currentPage === page ? "text-gray-900 font-semibold" : "text-gray-500 hover:text-gray-900"
-                  }`}
-                >
-                  {String(page).padStart(2, '0')}
-                  {currentPage === page && (
-                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-4 md:w-6 h-0.5 bg-gray-900" />
-                  )}
-                </button>
-              ))}
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                (page) => (
+                  <button
+                    key={page}
+                    onClick={() => setCurrentPage(page)}
+                    className={`px-1 py-0.5 md:px-2 md:py-1 text-xs md:text-sm cursor-pointer relative ${
+                      currentPage === page
+                        ? "text-gray-900 font-semibold"
+                        : "text-gray-500 hover:text-gray-900"
+                    }`}
+                  >
+                    {String(page).padStart(2, "0")}
+                    {currentPage === page && (
+                      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-4 md:w-6 h-0.5 bg-gray-900" />
+                    )}
+                  </button>
+                ),
+              )}
             </div>
             <button
-              onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+              onClick={() =>
+                setCurrentPage(Math.min(totalPages, currentPage + 1))
+              }
               disabled={currentPage === totalPages}
               className="text-gray-500 hover:text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center gap-1 md:gap-2 text-xs md:text-sm tracking-wider"
             >
               <span className="hidden sm:inline">NEXT</span>
-              <svg className="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              <svg
+                className="w-3 h-3 md:w-4 md:h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
               </svg>
             </button>
           </div>
