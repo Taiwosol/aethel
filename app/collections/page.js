@@ -108,25 +108,25 @@ export default function CollectionsPage() {
             <button
               onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
               disabled={currentPage === 1}
-              className="text-gray-500 hover:text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center gap-2 text-sm tracking-wider"
+              className="text-gray-500 hover:text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center gap-1 md:gap-2 text-xs md:text-sm tracking-wider"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
-              PREVIOUS
+              <span className="hidden sm:inline">PREVIOUS</span>
             </button>
-            <div className="flex gap-4 items-center">
+            <div className="flex gap-1 md:gap-4 items-center">
               {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
                 <button
                   key={page}
                   onClick={() => setCurrentPage(page)}
-                  className={`px-2 py-1 text-sm cursor-pointer relative ${
+                  className={`px-1 py-0.5 md:px-2 md:py-1 text-xs md:text-sm cursor-pointer relative ${
                     currentPage === page ? "text-gray-900 font-semibold" : "text-gray-500 hover:text-gray-900"
                   }`}
                 >
                   {String(page).padStart(2, '0')}
                   {currentPage === page && (
-                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 h-0.5 bg-gray-900" />
+                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-4 md:w-6 h-0.5 bg-gray-900" />
                   )}
                 </button>
               ))}
@@ -134,10 +134,10 @@ export default function CollectionsPage() {
             <button
               onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
               disabled={currentPage === totalPages}
-              className="text-gray-500 hover:text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center gap-2 text-sm tracking-wider"
+              className="text-gray-500 hover:text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center gap-1 md:gap-2 text-xs md:text-sm tracking-wider"
             >
-              NEXT
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <span className="hidden sm:inline">NEXT</span>
+              <svg className="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </button>
