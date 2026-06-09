@@ -79,9 +79,9 @@ export default function NewArrivalsPage() {
                 Timeless Silhouettes
               </h2>
               <p className="text-sm text-gray-600 leading-relaxed mb-8">
-                Our Autumn collection explores the intersection of brutalist
-                architecture and fluid tailoring. Each piece is a testament to the
-                silent luxury that defines AETHEL.
+                Our autumn collection explores the intersection of brutalist
+                architecture and fluid tailoring. Each piece is a testament to
+                the silent luxury that defines AETHEL.
               </p>
               <div className="grid grid-cols-2 gap-6">
                 <div className="cursor-pointer">
