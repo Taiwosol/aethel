@@ -2,7 +2,7 @@ export const products = [
   {
     id: 1,
     name: "Structured Overcoat",
-    price: 1250,
+    price: 18750,
     image: "/__collections/structured-overcoat.jpg",
     sizes: ["XS", "S", "M", "L", "XL"],
     category: "OUTERWEAR",
@@ -10,7 +10,7 @@ export const products = [
   {
     id: 2,
     name: "Silk Ribbon Blouse",
-    price: 450,
+    price: 6750,
     image: "/__collections/silk-ribbon-blouse.jpg",
     sizes: ["XS", "S", "M", "L"],
     category: "TOPS",
@@ -18,7 +18,7 @@ export const products = [
   {
     id: 3,
     name: "Mohair Knit Sweater",
-    price: 680,
+    price: 10200,
     image: "/__collections/knitwear.jpg",
     sizes: ["S", "M", "L", "XL"],
     category: "KNITWEAR",
@@ -26,7 +26,7 @@ export const products = [
   {
     id: 4,
     name: "Architectural Trouser",
-    price: 820,
+    price: 12300,
     image: "/__collections/architectural-trouser.jpg",
     sizes: ["XS", "S", "M", "L"],
     category: "BOTTOMS",
@@ -34,7 +34,7 @@ export const products = [
   {
     id: 5,
     name: "Nero Tote Bag",
-    price: 1850,
+    price: 27750,
     image: "/__collections/nero-tote-bag.jpg",
     sizes: ["One Size"],
     category: "ACCESSORIES",
@@ -42,7 +42,7 @@ export const products = [
   {
     id: 6,
     name: "Pure Cashmere Scarf",
-    price: 320,
+    price: 4800,
     image: "/__collections/cashmere-scarf.jpg",
     sizes: ["One Size"],
     category: "ACCESSORIES",
@@ -50,7 +50,7 @@ export const products = [
   {
     id: 7,
     name: "Structured Overcoat Men",
-    price: 1350,
+    price: 20250,
     image: "/__collections/structured-overcoat-men.jpg",
     sizes: ["S", "M", "L", "XL"],
     category: "OUTERWEAR",
@@ -58,7 +58,7 @@ export const products = [
   {
     id: 8,
     name: "Double-Breasted Blazer",
-    price: 980,
+    price: 14700,
     image: "/__collections/double-brested-blazer.jpg",
     sizes: ["XS", "S", "M", "L", "XL"],
     category: "OUTERWEAR",
@@ -66,7 +66,7 @@ export const products = [
   {
     id: 9,
     name: "Silk Slip Dress",
-    price: 750,
+    price: 11250,
     image: "/__collections/silk-slip-dress.jpg",
     sizes: ["XS", "S", "M", "L"],
     category: "DRESSES",
@@ -74,7 +74,7 @@ export const products = [
   {
     id: 10,
     name: "Ribbed Heavyweight Cardigan",
-    price: 590,
+    price: 8850,
     image: "/__collections/ribbed-heavyweight-cardigan.jpg",
     sizes: ["S", "M", "L", "XL"],
     category: "KNITWEAR",
@@ -82,7 +82,7 @@ export const products = [
   {
     id: 11,
     name: "Pleated Midi Skirt",
-    price: 420,
+    price: 6300,
     image: "/__collections/pleated-midi-skirt.jpg",
     sizes: ["XS", "S", "M", "L"],
     category: "BOTTOMS",
@@ -90,7 +90,7 @@ export const products = [
   {
     id: 12,
     name: "Minimalist Belt",
-    price: 280,
+    price: 4200,
     image: "/__collections/minimalist-belt.jpg",
     sizes: ["S", "M", "L"],
     category: "ACCESSORIES",
@@ -98,7 +98,7 @@ export const products = [
   {
     id: 13,
     name: "Minimalist Belt (Black)",
-    price: 280,
+    price: 4200,
     image: "/__collections/minimalist-belt (2).jpg",
     sizes: ["S", "M", "L"],
     category: "ACCESSORIES",
@@ -106,7 +106,7 @@ export const products = [
   {
     id: 14,
     name: "Cashmere Turtleneck",
-    price: 620,
+    price: 9300,
     image: "/__collections/cashmere-turtleneck.jpg",
     sizes: ["XS", "S", "M", "L", "XL"],
     category: "KNITWEAR",
@@ -114,7 +114,7 @@ export const products = [
   {
     id: 15,
     name: "Chelsea Boot",
-    price: 1150,
+    price: 17250,
     image: "/__collections/chelsea-boot.jpg",
     sizes: ["38", "39", "40", "41", "42", "43"],
     category: "FOOTWEAR",
@@ -122,7 +122,7 @@ export const products = [
   {
     id: 16,
     name: "Brown Leather Boots",
-    price: 1250,
+    price: 18750,
     image: "/__collections/brown-leather-boots.jpg",
     sizes: ["38", "39", "40", "41", "42", "43"],
     category: "FOOTWEAR",
@@ -130,7 +130,7 @@ export const products = [
   {
     id: 17,
     name: "Cashmere Beanie",
-    price: 180,
+    price: 2700,
     image: "/__collections/cashmere-beanie.jpg",
     sizes: ["One Size"],
     category: "ACCESSORIES",
@@ -138,7 +138,7 @@ export const products = [
   {
     id: 18,
     name: "Wool Beanie",
-    price: 120,
+    price: 1800,
     image: "/__collections/wool-beanie.jpg",
     sizes: ["One Size"],
     category: "ACCESSORIES",
@@ -146,7 +146,7 @@ export const products = [
   {
     id: 19,
     name: "Cashmere Oversized Scarf",
-    price: 390,
+    price: 5850,
     image: "/__collections/cashmere-oversized-scarf.jpg",
     sizes: ["One Size"],
     category: "ACCESSORIES",
@@ -154,7 +154,7 @@ export const products = [
   {
     id: 20,
     name: "Minimalist Scarf",
-    price: 220,
+    price: 3300,
     image: "/__collections/minimalist-scarf.jpg",
     sizes: ["One Size"],
     category: "ACCESSORIES",
@@ -162,7 +162,7 @@ export const products = [
   {
     id: 21,
     name: "Pure Scarf",
-    price: 290,
+    price: 4350,
     image: "/__collections/pure-scarf.jpg",
     sizes: ["One Size"],
     category: "ACCESSORIES",
@@ -170,7 +170,7 @@ export const products = [
   {
     id: 22,
     name: "Nero Bag",
-    price: 1650,
+    price: 24750,
     image: "/__collections/nero-bag.jpg",
     sizes: ["One Size"],
     category: "ACCESSORIES",
@@ -178,7 +178,7 @@ export const products = [
   {
     id: 23,
     name: "Cashmere Tote Bag",
-    price: 890,
+    price: 13350,
     image: "/__collections/cashmere-tote-bag.jpg",
     sizes: ["One Size"],
     category: "ACCESSORIES",
@@ -186,7 +186,7 @@ export const products = [
   {
     id: 24,
     name: "Silk Tote Bag",
-    price: 750,
+    price: 11250,
     image: "/__collections/silk-tote-bag.jpg",
     sizes: ["One Size"],
     category: "ACCESSORIES",
@@ -194,7 +194,7 @@ export const products = [
   {
     id: 25,
     name: "Fine Knit Polo",
-    price: 380,
+    price: 5700,
     image: "/__collections/fine-knit-polo.jpg",
     sizes: ["S", "M", "L", "XL"],
     category: "TOPS",
@@ -202,7 +202,7 @@ export const products = [
   {
     id: 26,
     name: "Gauge Polo",
-    price: 420,
+    price: 6300,
     image: "/__collections/guage-polo.jpg",
     sizes: ["S", "M", "L", "XL"],
     category: "TOPS",
@@ -210,7 +210,7 @@ export const products = [
   {
     id: 27,
     name: "Minimalist Knitwear",
-    price: 550,
+    price: 8250,
     image: "/__collections/minimalist-knitwear.jpg",
     sizes: ["XS", "S", "M", "L", "XL"],
     category: "KNITWEAR",
@@ -218,7 +218,7 @@ export const products = [
   {
     id: 28,
     name: "Turtle Neck Cardigan",
-    price: 650,
+    price: 9750,
     image: "/__collections/turtle-neck-cardigan.jpg",
     sizes: ["XS", "S", "M", "L", "XL"],
     category: "KNITWEAR",
@@ -226,7 +226,7 @@ export const products = [
   {
     id: 29,
     name: "Midi Skirt",
-    price: 480,
+    price: 7200,
     image: "/__collections/midi-skirt.jpg",
     sizes: ["XS", "S", "M", "L"],
     category: "BOTTOMS",
@@ -234,7 +234,7 @@ export const products = [
   {
     id: 30,
     name: "Brown Architectural Trouser",
-    price: 850,
+    price: 12750,
     image: "/__collections/brown-architectural-trouser.jpg",
     sizes: ["XS", "S", "M", "L"],
     category: "BOTTOMS",
@@ -242,7 +242,7 @@ export const products = [
   {
     id: 31,
     name: "Brown Boots",
-    price: 1100,
+    price: 16500,
     image: "/__collections/brown-boots.jpg",
     sizes: ["38", "39", "40", "41", "42", "43"],
     category: "FOOTWEAR",
@@ -250,7 +250,7 @@ export const products = [
   {
     id: 32,
     name: "Leather Boots",
-    price: 1200,
+    price: 18000,
     image: "/__collections/leather boots.jpg",
     sizes: ["38", "39", "40", "41", "42", "43"],
     category: "FOOTWEAR",

@@ -3,13 +3,12 @@
 import { useState, useEffect } from "react";
 import { createClient } from "@/utils/supabase/client";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 export default function HomePage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [mode, setMode] = useState("signin"); // 'signin' or 'signup'
+  const [mode, setMode] = useState("signin"); // 'signin', 'signup', or 'forgot'
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const supabase = createClient();
@@ -41,13 +40,22 @@ export default function HomePage() {
         });
         if (error) throw error;
         router.push("/collections");
-      } else {
+      } else if (mode === "signup") {
         const { error } = await supabase.auth.signUp({
           email,
           password,
         });
         if (error) throw error;
         setSuccessMessage("Check your email for verification!");
+      } else if (mode === "forgot") {
+        const { error } = await supabase.auth.resetPasswordForEmail(email, {
+          redirectTo:
+            typeof window !== "undefined"
+              ? `${window.location.origin}/update-password`
+              : undefined,
+        });
+        if (error) throw error;
+        setSuccessMessage("Check your email for password reset instructions!");
       }
     } catch (error) {
       setErrorMessage(error.message);
@@ -72,7 +80,7 @@ export default function HomePage() {
         </div>
         <div className="p-8 md:p-12 bg-[#1a1a1a]">
           <p className="text-xs text-gray-500 tracking-[0.2em] uppercase mb-4">
-            SPRING COLLECTION 2024
+            SPRING COLLECTION 2026
           </p>
           <h2 className="text-5xl md:text-7xl font-light text-white italic">
             The Art of
@@ -86,12 +94,14 @@ export default function HomePage() {
       <div className="w-full md:w-1/2 bg-white flex flex-col justify-between p-8 md:p-16 md:sticky md:top-0 md:h-screen md:overflow-y-auto">
         <div className="max-w-md w-full">
           <h1 className="text-3xl md:text-4xl font-light text-gray-900 mb-2">
-            Welcome Back
+            {mode === "forgot" ? "Reset Password" : "Welcome Back"}
           </h1>
           <p className="text-gray-500 text-sm mb-8">
             {mode === "signin"
               ? "Sign in to access your curated collection."
-              : "Start your journey with us today."}
+              : mode === "signup"
+                ? "Start your journey with us today."
+                : "Enter your email to receive password reset instructions."}
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -119,55 +129,71 @@ export default function HomePage() {
               />
             </div>
 
-            <div>
-              <div className="flex justify-between items-center mb-2">
-                <label className="text-xs text-gray-700 tracking-[0.15em] uppercase">
-                  Password
-                </label>
-                {mode === "signin" && (
-                  <Link
-                    href="#"
-                    className="text-xs text-gray-500 hover:text-gray-900"
-                  >
-                    Forgot?
-                  </Link>
-                )}
+            {mode !== "forgot" && (
+              <div>
+                <div className="flex justify-between items-center mb-2">
+                  <label className="text-xs text-gray-700 tracking-[0.15em] uppercase">
+                    Password
+                  </label>
+                  {mode === "signin" && (
+                    <button
+                      type="button"
+                      onClick={() => setMode("forgot")}
+                      className="text-xs text-gray-500 hover:text-gray-900 cursor-pointer"
+                    >
+                      Forgot?
+                    </button>
+                  )}
+                </div>
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  className="w-full border-b-2 border-gray-200 py-3 text-sm text-gray-900 placeholder-gray-300 focus:outline-none focus:border-gray-900 transition-colors"
+                  placeholder="••••••••"
+                />
               </div>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                className="w-full border-b-2 border-gray-200 py-3 text-sm text-gray-900 placeholder-gray-300 focus:outline-none focus:border-gray-900 transition-colors"
-                placeholder="••••••••"
-              />
-            </div>
+            )}
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-black text-white py-4 text-sm tracking-[0.15em] uppercase hover:bg-gray-900 transition-colors disabled:opacity-50"
+              className="w-full bg-black text-white py-4 text-sm tracking-[0.15em] uppercase hover:bg-gray-900 transition-colors disabled:opacity-50 cursor-pointer"
             >
               {loading
                 ? "Please wait..."
                 : mode === "signin"
                   ? "Sign In"
-                  : "Create Account"}
+                  : mode === "signup"
+                    ? "Create Account"
+                    : "Send Reset Link"}
             </button>
           </form>
 
           <div className="mt-8 text-center">
-            <p className="text-sm text-gray-600">
-              {mode === "signin"
-                ? "Don't have an account? "
-                : "Already have an account? "}
+            {mode === "forgot" ? (
               <button
-                onClick={() => setMode(mode === "signin" ? "signup" : "signin")}
-                className="text-sm text-gray-900 font-semibold hover:underline"
+                onClick={() => setMode("signin")}
+                className="text-sm text-gray-900 font-semibold hover:underline cursor-pointer"
               >
-                {mode === "signin" ? "Create one" : "Sign in"}
+                Back to Sign In
               </button>
-            </p>
+            ) : (
+              <p className="text-sm text-gray-600">
+                {mode === "signin"
+                  ? "Don't have an account? "
+                  : "Already have an account? "}
+                <button
+                  onClick={() =>
+                    setMode(mode === "signin" ? "signup" : "signin")
+                  }
+                  className="text-sm text-gray-900 font-semibold hover:underline cursor-pointer"
+                >
+                  {mode === "signin" ? "Create one" : "Sign in"}
+                </button>
+              </p>
+            )}
           </div>
         </div>
 

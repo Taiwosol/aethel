@@ -1,39 +1,87 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect } from "react";
+import { useAuth } from "./AuthContext";
 
 const WishlistContext = createContext();
 
 export function WishlistProvider({ children }) {
+  const { user } = useAuth();
   const [wishlist, setWishlist] = useState([]);
   const [cart, setCart] = useState([]);
+  const [shippingAddress, setShippingAddress] = useState(null);
+  const [orders, setOrders] = useState([]);
+
+  const getStorageKeys = () => {
+    const userId = user?.id || "guest";
+    return {
+      wishlistKey: `wishlist_${userId}`,
+      cartKey: `cart_${userId}`,
+      shippingKey: `shipping_${userId}`,
+      ordersKey: `orders_${userId}`,
+    };
+  };
 
   useEffect(() => {
-    const savedWishlist = localStorage.getItem("wishlist");
-    const savedCart = localStorage.getItem("cart");
-    if (savedWishlist) {
-      setWishlist(JSON.parse(savedWishlist));
+    if (user !== undefined) {
+      const { wishlistKey, cartKey, shippingKey, ordersKey } = getStorageKeys();
+      const savedWishlist = localStorage.getItem(wishlistKey);
+      const savedCart = localStorage.getItem(cartKey);
+      const savedShipping = localStorage.getItem(shippingKey);
+      const savedOrders = localStorage.getItem(ordersKey);
+      setWishlist(savedWishlist ? JSON.parse(savedWishlist) : []);
+      setCart(savedCart ? JSON.parse(savedCart) : []);
+      setShippingAddress(savedShipping ? JSON.parse(savedShipping) : null);
+      setOrders(savedOrders ? JSON.parse(savedOrders) : []);
     }
-    if (savedCart) {
-      setCart(JSON.parse(savedCart));
+  }, [user]);
+
+  useEffect(() => {
+    if (user !== undefined) {
+      const { wishlistKey } = getStorageKeys();
+      localStorage.setItem(wishlistKey, JSON.stringify(wishlist));
     }
-  }, []);
+  }, [wishlist, user]);
 
   useEffect(() => {
-    localStorage.setItem("wishlist", JSON.stringify(wishlist));
-  }, [wishlist]);
+    if (user !== undefined) {
+      const { cartKey } = getStorageKeys();
+      localStorage.setItem(cartKey, JSON.stringify(cart));
+    }
+  }, [cart, user]);
 
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
+    if (user !== undefined) {
+      const { shippingKey } = getStorageKeys();
+      if (shippingAddress) {
+        localStorage.setItem(shippingKey, JSON.stringify(shippingAddress));
+      } else {
+        localStorage.removeItem(shippingKey);
+      }
+    }
+  }, [shippingAddress, user]);
+
+  useEffect(() => {
+    if (user !== undefined) {
+      const { ordersKey } = getStorageKeys();
+      if (orders.length > 0) {
+        localStorage.setItem(ordersKey, JSON.stringify(orders));
+      } else {
+        localStorage.removeItem(ordersKey);
+      }
+    }
+  }, [orders, user]);
 
   // Wishlist functions
   const addToWishlist = (product, size) => {
     const itemExists = wishlist.some(
-      (item) => item.product.id === product.id && item.size === size
+      (item) => item.product.id === product.id && item.size === size,
     );
     if (!itemExists) {
-      setWishlist([...wishlist, { product, size, id: Date.now(), createdAt: Date.now() }]);
+      setWishlist([
+        ...wishlist,
+        { product, size, id: Date.now(), createdAt: Date.now() },
+      ]);
     }
   };
 
@@ -47,14 +95,14 @@ export function WishlistProvider({ children }) {
 
   const isInWishlist = (productId, size) => {
     return wishlist.some(
-      (item) => item.product.id === productId && item.size === size
+      (item) => item.product.id === productId && item.size === size,
     );
   };
 
   // Cart functions
   const addToCart = (product, size) => {
     const existingItemIndex = cart.findIndex(
-      (item) => item.product.id === product.id && item.size === size
+      (item) => item.product.id === product.id && item.size === size,
     );
     if (existingItemIndex !== -1) {
       const updatedCart = [...cart];
@@ -75,7 +123,7 @@ export function WishlistProvider({ children }) {
       return;
     }
     const updatedCart = cart.map((item) =>
-      item.id === itemId ? { ...item, quantity: newQuantity } : item
+      item.id === itemId ? { ...item, quantity: newQuantity } : item,
     );
     setCart(updatedCart);
   };
@@ -86,7 +134,23 @@ export function WishlistProvider({ children }) {
 
   // Calculate subtotal
   const calculateSubtotal = () => {
-    return cart.reduce((total, item) => total + (item.product.price * item.quantity), 0);
+    return cart.reduce(
+      (total, item) => total + item.product.price * item.quantity,
+      0,
+    );
+  };
+
+  // Shipping and order functions
+  const saveShippingAddress = (address) => {
+    setShippingAddress(address);
+  };
+
+  const addOrder = (order) => {
+    setOrders((prev) => [order, ...prev]);
+  };
+
+  const removeOrder = (orderId) => {
+    setOrders((prev) => prev.filter((order) => order.orderNumber !== orderId));
   };
 
   return (
@@ -102,7 +166,12 @@ export function WishlistProvider({ children }) {
         removeFromCart,
         updateCartItemQuantity,
         clearCart,
-        calculateSubtotal
+        calculateSubtotal,
+        shippingAddress,
+        saveShippingAddress,
+        orders,
+        addOrder,
+        removeOrder,
       }}
     >
       {children}

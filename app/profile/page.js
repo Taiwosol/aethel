@@ -7,9 +7,11 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { useAuth } from "@/contexts/AuthContext";
+import { useWishlist } from "@/contexts/WishlistContext";
 
 export default function ProfilePage() {
   const { user } = useAuth();
+  const { orders, removeOrder } = useWishlist();
   const [loading, setLoading] = useState(false);
   const [editingName, setEditingName] = useState(false);
   const [name, setName] = useState("");
@@ -112,7 +114,7 @@ export default function ProfilePage() {
         <Navigation />
 
         <main className="px-6 py-12">
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <h1 className="text-3xl md:text-5xl font-light italic text-gray-900 mb-4">
               Welcome Back, {user?.user_metadata?.full_name || "User"}
             </h1>
@@ -131,6 +133,84 @@ export default function ProfilePage() {
                 {message}
               </div>
             )}
+
+            {/* Orders Section */}
+            <div className="mb-12">
+              <h2 className="text-xl font-light tracking-[0.05em] text-gray-900 mb-6">
+                My Orders
+              </h2>
+              {orders.length > 0 ? (
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  {orders.map((order, index) => (
+                    <div
+                      key={index}
+                      className="bg-white p-6 rounded-lg shadow-sm border border-gray-200"
+                    >
+                      <div className="flex justify-between items-start mb-4">
+                        <div>
+                          <p className="text-sm font-semibold text-gray-900">
+                            {order.orderNumber}
+                          </p>
+                          <p className="text-xs text-gray-500 mt-1">
+                            {order.orderDate}
+                          </p>
+                        </div>
+                        <span className="px-3 py-1 bg-green-100 text-green-800 text-xs font-semibold rounded">
+                          {order.status}
+                        </span>
+                      </div>
+
+                      <div className="border-t border-gray-200 pt-4 space-y-3">
+                        {order.items.slice(0, 2).map((item, idx) => (
+                          <div key={idx} className="flex gap-3">
+                            <div className="w-12 h-12 bg-gray-200 flex-shrink-0 overflow-hidden">
+                              <img
+                                src={item.product.image}
+                                alt={item.product.name}
+                                className="w-full h-full object-cover"
+                              />
+                            </div>
+                            <div className="flex-1">
+                              <p className="text-sm text-gray-900">
+                                {item.product.name}
+                              </p>
+                              <p className="text-xs text-gray-500">
+                                Qty: {item.quantity} • Size: {item.size}
+                              </p>
+                            </div>
+                          </div>
+                        ))}
+                        {order.items.length > 2 && (
+                          <p className="text-xs text-gray-500">
+                            +{order.items.length - 2} more item
+                            {order.items.length - 2 > 1 ? "s" : ""}
+                          </p>
+                        )}
+                      </div>
+
+                      <div className="border-t border-gray-200 pt-4 mt-4 flex justify-between items-center">
+                        <p className="text-sm font-semibold text-gray-900">
+                          Total
+                        </p>
+                        <p className="text-lg font-bold text-gray-900">
+                          ₦{order.total.toLocaleString()}
+                        </p>
+                      </div>
+                      <button
+                        onClick={() => removeOrder(order.orderNumber)}
+                        className="w-full mt-4 bg-black text-white py-3 text-sm tracking-wider hover:bg-gray-800 cursor-pointer"
+                      >
+                        MARK ORDER AS RECEIVED
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 text-center">
+                  <p className="text-gray-500">No orders yet.</p>
+                </div>
+              )}
+            </div>
 
             <div className="space-y-8">
               <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">

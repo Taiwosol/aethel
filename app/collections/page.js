@@ -122,7 +122,7 @@ export default function CollectionsPage() {
                 <h3 className="text-lg font-light text-gray-900 mb-1">
                   {product.name}
                 </h3>
-                <p className="text-gray-600">${product.price}</p>
+                <p className="text-gray-600">₦{product.price.toLocaleString()}</p>
               </div>
             ))}
           </div>

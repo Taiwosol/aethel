@@ -9,26 +9,26 @@ const products = [
   {
     id: 1,
     name: "Structured Blazer",
-    price: "$480.00",
+    price: "₦7,200",
     image: "/structured-blazer.jpg",
     badge: "LIMITED EDITION",
   },
   {
     id: 2,
     name: "Ankle Chelsea Boot",
-    price: "$320.00",
+    price: "₦4,800",
     image: "/chelsea-boot.jpg",
   },
   {
     id: 3,
     name: "Cashmere Mock-Neck",
-    price: "$290.00",
+    price: "₦4,350",
     image: "/mock-neck.jpg",
   },
   {
     id: 4,
     name: "The Overcoat",
-    price: "$750.00",
+    price: "₦11,250",
     image: "/overcoat.jpg",
   },
 ];
