@@ -2,6 +2,7 @@ export const products = [
   {
     id: 1,
     name: "Structured Overcoat",
+    slug: "structured-overcoat",
     price: 18750,
     image: "/__collections/structured-overcoat.jpg",
     sizes: ["XS", "S", "M", "L", "XL"],
@@ -10,6 +11,7 @@ export const products = [
   {
     id: 2,
     name: "Silk Ribbon Blouse",
+    slug: "silk-ribbon-blouse",
     price: 6750,
     image: "/__collections/silk-ribbon-blouse.jpg",
     sizes: ["XS", "S", "M", "L"],
@@ -18,6 +20,7 @@ export const products = [
   {
     id: 3,
     name: "Mohair Knit Sweater",
+    slug: "mohair-knit-sweater",
     price: 10200,
     image: "/__collections/knitwear.jpg",
     sizes: ["S", "M", "L", "XL"],
@@ -26,6 +29,7 @@ export const products = [
   {
     id: 4,
     name: "Architectural Trouser",
+    slug: "architectural-trouser",
     price: 12300,
     image: "/__collections/architectural-trouser.jpg",
     sizes: ["XS", "S", "M", "L"],
@@ -34,6 +38,7 @@ export const products = [
   {
     id: 5,
     name: "Nero Tote Bag",
+    slug: "nero-tote-bag",
     price: 27750,
     image: "/__collections/nero-tote-bag.jpg",
     sizes: ["One Size"],
@@ -42,6 +47,7 @@ export const products = [
   {
     id: 6,
     name: "Pure Cashmere Scarf",
+    slug: "pure-cashmere-scarf",
     price: 4800,
     image: "/__collections/cashmere-scarf.jpg",
     sizes: ["One Size"],
@@ -50,6 +56,7 @@ export const products = [
   {
     id: 7,
     name: "Structured Overcoat Men",
+    slug: "structured-overcoat-men",
     price: 20250,
     image: "/__collections/structured-overcoat-men.jpg",
     sizes: ["S", "M", "L", "XL"],
@@ -58,6 +65,7 @@ export const products = [
   {
     id: 8,
     name: "Double-Breasted Blazer",
+    slug: "double-breasted-blazer",
     price: 14700,
     image: "/__collections/double-brested-blazer.jpg",
     sizes: ["XS", "S", "M", "L", "XL"],
@@ -66,6 +74,7 @@ export const products = [
   {
     id: 9,
     name: "Silk Slip Dress",
+    slug: "silk-slip-dress",
     price: 11250,
     image: "/__collections/silk-slip-dress.jpg",
     sizes: ["XS", "S", "M", "L"],
@@ -74,6 +83,7 @@ export const products = [
   {
     id: 10,
     name: "Ribbed Heavyweight Cardigan",
+    slug: "ribbed-heavyweight-cardigan",
     price: 8850,
     image: "/__collections/ribbed-heavyweight-cardigan.jpg",
     sizes: ["S", "M", "L", "XL"],
@@ -82,6 +92,7 @@ export const products = [
   {
     id: 11,
     name: "Pleated Midi Skirt",
+    slug: "pleated-midi-skirt",
     price: 6300,
     image: "/__collections/pleated-midi-skirt.jpg",
     sizes: ["XS", "S", "M", "L"],
@@ -90,6 +101,7 @@ export const products = [
   {
     id: 12,
     name: "Minimalist Belt",
+    slug: "minimalist-belt",
     price: 4200,
     image: "/__collections/minimalist-belt.jpg",
     sizes: ["S", "M", "L"],
@@ -98,6 +110,7 @@ export const products = [
   {
     id: 13,
     name: "Minimalist Belt (Black)",
+    slug: "minimalist-belt-black",
     price: 4200,
     image: "/__collections/minimalist-belt (2).jpg",
     sizes: ["S", "M", "L"],
@@ -106,6 +119,7 @@ export const products = [
   {
     id: 14,
     name: "Cashmere Turtleneck",
+    slug: "cashmere-turtleneck",
     price: 9300,
     image: "/__collections/cashmere-turtleneck.jpg",
     sizes: ["XS", "S", "M", "L", "XL"],
@@ -114,6 +128,7 @@ export const products = [
   {
     id: 15,
     name: "Chelsea Boot",
+    slug: "chelsea-boot",
     price: 17250,
     image: "/__collections/chelsea-boot.jpg",
     sizes: ["38", "39", "40", "41", "42", "43"],
@@ -122,6 +137,7 @@ export const products = [
   {
     id: 16,
     name: "Brown Leather Boots",
+    slug: "brown-leather-boots",
     price: 18750,
     image: "/__collections/brown-leather-boots.jpg",
     sizes: ["38", "39", "40", "41", "42", "43"],
@@ -130,6 +146,7 @@ export const products = [
   {
     id: 17,
     name: "Cashmere Beanie",
+    slug: "cashmere-beanie",
     price: 2700,
     image: "/__collections/cashmere-beanie.jpg",
     sizes: ["One Size"],
@@ -138,6 +155,7 @@ export const products = [
   {
     id: 18,
     name: "Wool Beanie",
+    slug: "wool-beanie",
     price: 1800,
     image: "/__collections/wool-beanie.jpg",
     sizes: ["One Size"],
@@ -146,6 +164,7 @@ export const products = [
   {
     id: 19,
     name: "Cashmere Oversized Scarf",
+    slug: "cashmere-oversized-scarf",
     price: 5850,
     image: "/__collections/cashmere-oversized-scarf.jpg",
     sizes: ["One Size"],
@@ -154,6 +173,7 @@ export const products = [
   {
     id: 20,
     name: "Minimalist Scarf",
+    slug: "minimalist-scarf",
     price: 3300,
     image: "/__collections/minimalist-scarf.jpg",
     sizes: ["One Size"],
@@ -162,6 +182,7 @@ export const products = [
   {
     id: 21,
     name: "Pure Scarf",
+    slug: "pure-scarf",
     price: 4350,
     image: "/__collections/pure-scarf.jpg",
     sizes: ["One Size"],
@@ -170,6 +191,7 @@ export const products = [
   {
     id: 22,
     name: "Nero Bag",
+    slug: "nero-bag",
     price: 24750,
     image: "/__collections/nero-bag.jpg",
     sizes: ["One Size"],
@@ -178,6 +200,7 @@ export const products = [
   {
     id: 23,
     name: "Cashmere Tote Bag",
+    slug: "cashmere-tote-bag",
     price: 13350,
     image: "/__collections/cashmere-tote-bag.jpg",
     sizes: ["One Size"],
@@ -186,6 +209,7 @@ export const products = [
   {
     id: 24,
     name: "Silk Tote Bag",
+    slug: "silk-tote-bag",
     price: 11250,
     image: "/__collections/silk-tote-bag.jpg",
     sizes: ["One Size"],
@@ -194,6 +218,7 @@ export const products = [
   {
     id: 25,
     name: "Fine Knit Polo",
+    slug: "fine-knit-polo",
     price: 5700,
     image: "/__collections/fine-knit-polo.jpg",
     sizes: ["S", "M", "L", "XL"],
@@ -202,6 +227,7 @@ export const products = [
   {
     id: 26,
     name: "Gauge Polo",
+    slug: "gauge-polo",
     price: 6300,
     image: "/__collections/guage-polo.jpg",
     sizes: ["S", "M", "L", "XL"],
@@ -210,6 +236,7 @@ export const products = [
   {
     id: 27,
     name: "Minimalist Knitwear",
+    slug: "minimalist-knitwear",
     price: 8250,
     image: "/__collections/minimalist-knitwear.jpg",
     sizes: ["XS", "S", "M", "L", "XL"],
@@ -218,6 +245,7 @@ export const products = [
   {
     id: 28,
     name: "Turtle Neck Cardigan",
+    slug: "turtle-neck-cardigan",
     price: 9750,
     image: "/__collections/turtle-neck-cardigan.jpg",
     sizes: ["XS", "S", "M", "L", "XL"],
@@ -226,6 +254,7 @@ export const products = [
   {
     id: 29,
     name: "Midi Skirt",
+    slug: "midi-skirt",
     price: 7200,
     image: "/__collections/midi-skirt.jpg",
     sizes: ["XS", "S", "M", "L"],
@@ -234,6 +263,7 @@ export const products = [
   {
     id: 30,
     name: "Brown Architectural Trouser",
+    slug: "brown-architectural-trouser",
     price: 12750,
     image: "/__collections/brown-architectural-trouser.jpg",
     sizes: ["XS", "S", "M", "L"],
@@ -242,6 +272,7 @@ export const products = [
   {
     id: 31,
     name: "Brown Boots",
+    slug: "brown-boots",
     price: 16500,
     image: "/__collections/brown-boots.jpg",
     sizes: ["38", "39", "40", "41", "42", "43"],
@@ -250,6 +281,7 @@ export const products = [
   {
     id: 32,
     name: "Leather Boots",
+    slug: "leather-boots",
     price: 18000,
     image: "/__collections/leather boots.jpg",
     sizes: ["38", "39", "40", "41", "42", "43"],

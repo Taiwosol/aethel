@@ -8,9 +8,10 @@ import Footer from "@/components/Footer";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { useAuth } from "@/contexts/AuthContext";
 import { useWishlist } from "@/contexts/WishlistContext";
+import Image from "next/image";
 
 export default function ProfilePage() {
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
   const { orders, removeOrder } = useWishlist();
   const [loading, setLoading] = useState(false);
   const [editingName, setEditingName] = useState(false);
@@ -98,9 +99,7 @@ export default function ProfilePage() {
     setMessageType("");
 
     try {
-      const { error } = await supabase.auth.signOut();
-      if (error) throw error;
-      router.push("/");
+      await signOut();
     } catch (error) {
       setMessage(error.message);
       setMessageType("error");
@@ -163,11 +162,12 @@ export default function ProfilePage() {
                       <div className="border-t border-gray-200 pt-4 space-y-3">
                         {order.items.slice(0, 2).map((item, idx) => (
                           <div key={idx} className="flex gap-3">
-                            <div className="w-12 h-12 bg-gray-200 flex-shrink-0 overflow-hidden">
-                              <img
+                            <div className="w-12 h-12 bg-gray-200 flex-shrink-0 overflow-hidden relative">
+                              <Image
                                 src={item.product.image}
                                 alt={item.product.name}
-                                className="w-full h-full object-cover"
+                                fill
+                                className="object-cover"
                               />
                             </div>
                             <div className="flex-1">

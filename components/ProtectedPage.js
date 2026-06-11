@@ -10,7 +10,7 @@ export function ProtectedPage({ children }) {
 
   useEffect(() => {
     if (!loading && !user) {
-      router.push("/");
+      router.push("/login");
     }
   }, [user, loading, router]);
 

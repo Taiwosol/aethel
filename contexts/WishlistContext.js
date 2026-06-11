@@ -85,6 +85,20 @@ export function WishlistProvider({ children }) {
     }
   };
 
+  const toggleWishlist = (product, size) => {
+    const itemIndex = wishlist.findIndex(
+      (item) => item.product.id === product.id && item.size === size,
+    );
+    if (itemIndex !== -1) {
+      setWishlist(wishlist.filter((_, i) => i !== itemIndex));
+    } else {
+      setWishlist([
+        ...wishlist,
+        { product, size, id: Date.now(), createdAt: Date.now() },
+      ]);
+    }
+  };
+
   const removeFromWishlist = (itemId) => {
     setWishlist(wishlist.filter((item) => item.id !== itemId));
   };
@@ -104,13 +118,11 @@ export function WishlistProvider({ children }) {
     const existingItemIndex = cart.findIndex(
       (item) => item.product.id === product.id && item.size === size,
     );
-    if (existingItemIndex !== -1) {
-      const updatedCart = [...cart];
-      updatedCart[existingItemIndex].quantity += 1;
-      setCart(updatedCart);
-    } else {
+    if (existingItemIndex === -1) {
+      // Only add if not already in cart
       setCart([...cart, { product, size, quantity: 1, id: Date.now() }]);
     }
+    // If already exists, do nothing
   };
 
   const removeFromCart = (itemId) => {
@@ -158,6 +170,7 @@ export function WishlistProvider({ children }) {
       value={{
         wishlist,
         addToWishlist,
+        toggleWishlist,
         removeFromWishlist,
         clearWishlist,
         isInWishlist,

@@ -5,6 +5,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function CartPage() {
   const { cart, removeFromCart, updateCartItemQuantity, calculateSubtotal } =
@@ -50,11 +51,12 @@ export default function CartPage() {
               <div className="space-y-8 mb-12">
                 {cart.map((item) => (
                   <div key={item.id} className="flex gap-6 items-start">
-                    <div className="w-32 h-32 bg-gray-200 flex-shrink-0 overflow-hidden">
-                      <img
+                    <div className="w-32 h-32 bg-gray-200 flex-shrink-0 overflow-hidden relative">
+                      <Image
                         src={item.product.image}
                         alt={item.product.name}
-                        className="w-full h-full object-cover"
+                        fill
+                        className="object-cover"
                       />
                     </div>
                     <div className="flex-1 flex flex-col md:flex-row md:items-center md:justify-between gap-4">

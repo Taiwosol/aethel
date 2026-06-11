@@ -1,6 +1,10 @@
+"use client";
+
 import Link from "next/link";
+import { useAuth } from "@/contexts/AuthContext";
 
 export default function Footer() {
+  const { user } = useAuth();
   return (
     <footer className="bg-white border-t border-gray-100 py-16 px-6">
       <div className="max-w-7xl mx-auto">
@@ -31,7 +35,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="/new-arrivals"
                   className="text-sm text-gray-500 hover:text-gray-900 transition-colors cursor-pointer"
                 >
                   New Arrivals
@@ -39,19 +43,19 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="/about"
                   className="text-sm text-gray-500 hover:text-gray-900 transition-colors cursor-pointer"
                 >
-                  Store Locator
+                  About Us
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Service Column */}
+          {/* Follow Us Column */}
           <div>
             <h4 className="text-xs font-semibold text-gray-900 tracking-[0.15em] uppercase mb-5">
-              Service
+              Follow Us
             </h4>
             <ul className="space-y-3">
               <li>
@@ -59,7 +63,7 @@ export default function Footer() {
                   href="#"
                   className="text-sm text-gray-500 hover:text-gray-900 transition-colors cursor-pointer"
                 >
-                  Shipping & Returns
+                  Instagram
                 </Link>
               </li>
               <li>
@@ -67,7 +71,7 @@ export default function Footer() {
                   href="#"
                   className="text-sm text-gray-500 hover:text-gray-900 transition-colors cursor-pointer"
                 >
-                  Contact Us
+                  X (Twitter)
                 </Link>
               </li>
               <li>
@@ -75,7 +79,15 @@ export default function Footer() {
                   href="#"
                   className="text-sm text-gray-500 hover:text-gray-900 transition-colors cursor-pointer"
                 >
-                  Account
+                  LinkedIn
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="#"
+                  className="text-sm text-gray-500 hover:text-gray-900 transition-colors cursor-pointer"
+                >
+                  Facebook
                 </Link>
               </li>
             </ul>
@@ -88,20 +100,14 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3">
               <li>
-                <Link
-                  href="#"
-                  className="text-sm text-gray-500 hover:text-gray-900 transition-colors cursor-pointer"
-                >
+                <span className="text-sm text-gray-500 cursor-default">
                   Privacy Policy
-                </Link>
+                </span>
               </li>
               <li>
-                <Link
-                  href="#"
-                  className="text-sm text-gray-500 hover:text-gray-900 transition-colors cursor-pointer"
-                >
+                <span className="text-sm text-gray-500 cursor-default">
                   Terms of Service
-                </Link>
+                </span>
               </li>
             </ul>
           </div>

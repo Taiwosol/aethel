@@ -25,7 +25,7 @@ export default function Navigation() {
         <div className="flex justify-between items-center">
           <div className="flex items-center">
             <Link
-              href="/collections"
+              href="/"
               className="text-2xl md:text-3xl font-light tracking-[0.2em] text-gray-900 cursor-pointer"
             >
               AETHEL
@@ -158,7 +158,7 @@ export default function Navigation() {
             <div className="flex justify-between items-center">
               <div className="flex items-center">
                 <Link
-                  href="/collections"
+                  href="/"
                   className="text-2xl md:text-3xl font-light tracking-[0.2em] text-gray-900 cursor-pointer"
                 >
                   AETHEL
