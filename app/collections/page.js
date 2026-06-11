@@ -14,9 +14,8 @@ const PRODUCTS_PER_PAGE = 6;
 
 export default function CollectionsPage() {
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedSize, setSelectedSize] = useState({});
   const [showSizeSelector, setShowSizeSelector] = useState(null);
-  const { toggleWishlist, isInWishlist } = useWishlist();
+  const { toggleWishlist, isInWishlist, wishlist } = useWishlist();
   const { user } = useAuth();
   const router = useRouter();
 
@@ -24,6 +23,17 @@ export default function CollectionsPage() {
   const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
   const endIndex = startIndex + PRODUCTS_PER_PAGE;
   const currentProducts = products.slice(startIndex, endIndex);
+
+  // Check if any size of this product is in wishlist
+  const isProductInWishlist = (productId) => {
+    return wishlist.some((item) => item.product.id === productId);
+  };
+
+  // Get the first size of this product that's in wishlist
+  const getWishlistedSize = (productId) => {
+    const item = wishlist.find((item) => item.product.id === productId);
+    return item ? item.size : undefined;
+  };
 
   const handleWishlistClick = (product, e) => {
     e.preventDefault();
@@ -34,7 +44,6 @@ export default function CollectionsPage() {
     }
     if (product.sizes.length === 1) {
       toggleWishlist(product, product.sizes[0]);
-      setSelectedSize({ ...selectedSize, [product.id]: product.sizes[0] });
     } else {
       setShowSizeSelector(showSizeSelector === product.id ? null : product.id);
     }
@@ -49,7 +58,6 @@ export default function CollectionsPage() {
     }
     toggleWishlist(product, size);
     setShowSizeSelector(null);
-    setSelectedSize({ ...selectedSize, [product.id]: size });
   };
 
   return (
@@ -94,15 +102,7 @@ export default function CollectionsPage() {
                   <svg
                     className="w-5 h-5"
                     fill={
-                      isInWishlist(
-                        product.id,
-                        selectedSize[product.id] ||
-                          (product.sizes.length === 1
-                            ? product.sizes[0]
-                            : undefined),
-                      )
-                        ? "currentColor"
-                        : "none"
+                      isProductInWishlist(product.id) ? "currentColor" : "none"
                     }
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -125,7 +125,11 @@ export default function CollectionsPage() {
                         <button
                           key={size}
                           onClick={(e) => handleSizeSelect(product, size, e)}
-                          className="px-4 py-2 border border-gray-300 text-gray-900 hover:border-gray-900 hover:bg-gray-900 hover:text-white transition-colors cursor-pointer"
+                          className={`px-4 py-2 border transition-colors cursor-pointer ${
+                            isInWishlist(product.id, size)
+                              ? "border-gray-900 bg-gray-900 text-white"
+                              : "border-gray-300 text-gray-900 hover:border-gray-900 hover:bg-gray-900 hover:text-white"
+                          }`}
                         >
                           {size}
                         </button>

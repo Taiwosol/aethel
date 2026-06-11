@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, use } from "react";
-import { notFound, useRouter } from "next/navigation";
+import { notFound } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { products } from "@/data/products";
@@ -13,12 +14,17 @@ import Navigation from "@/components/Navigation";
 export default function ProductPage({ params }) {
   const { slug } = use(params);
   const [selectedSize, setSelectedSize] = useState(null);
-  const { addToCart, addToWishlist, isInWishlist } = useWishlist();
+  const [openSections, setOpenSections] = useState({
+    materials: false,
+    shipping: false,
+    story: false,
+  });
+  const { addToCart, toggleWishlist, isInWishlist } = useWishlist();
   const { user } = useAuth();
   const router = useRouter();
-  
-  const product = products.find(p => p.slug === slug);
-  
+
+  const product = products.find((p) => p.slug === slug);
+
   if (!product) {
     notFound();
   }
@@ -33,20 +39,27 @@ export default function ProductPage({ params }) {
     }
   };
 
-  const handleAddToWishlist = () => {
+  const handleToggleWishlist = () => {
     if (!user) {
       router.push("/login");
       return;
     }
     if (selectedSize || product.sizes.length === 1) {
-      addToWishlist(product, selectedSize || product.sizes[0]);
+      toggleWishlist(product, selectedSize || product.sizes[0]);
     }
   };
 
   const isProductInWishlist = isInWishlist(
     product.id,
-    selectedSize || (product.sizes.length === 1 ? product.sizes[0] : undefined)
+    selectedSize || (product.sizes.length === 1 ? product.sizes[0] : undefined),
   );
+
+  const toggleSection = (section) => {
+    setOpenSections((prev) => ({
+      ...prev,
+      [section]: !prev[section],
+    }));
+  };
 
   return (
     <div className="min-h-screen bg-[#fafafa]">
@@ -55,13 +68,19 @@ export default function ProductPage({ params }) {
         <nav className="mb-8">
           <ol className="flex items-center gap-2 text-sm text-gray-500">
             <li>
-              <Link href="/collections" className="hover:text-gray-900 transition-colors">
+              <Link
+                href="/"
+                className="hover:text-gray-900 transition-colors cursor-pointer"
+              >
                 AETHEL
               </Link>
             </li>
             <li>/</li>
             <li>
-              <Link href="/collections" className="hover:text-gray-900 transition-colors">
+              <Link
+                href="/collections"
+                className="hover:text-gray-900 transition-colors cursor-pointer"
+              >
                 {product.category}
               </Link>
             </li>
@@ -91,7 +110,10 @@ export default function ProductPage({ params }) {
             </p>
 
             <p className="text-gray-600 mb-8 leading-relaxed">
-              Crafted in our Milanese atelier from an exquisite blend of virgin Italian wool. A timeless silhouette that balances architectural rigidity with the grace of artisanal finishing. Designed to endure seasons, not just cycles.
+              Crafted in our Milanese atelier from an exquisite blend of virgin
+              Italian wool. A timeless silhouette that balances architectural
+              rigidity with the grace of artisanal finishing. Designed to endure
+              seasons, not just cycles.
             </p>
 
             <div className="mb-8">
@@ -121,10 +143,10 @@ export default function ProductPage({ params }) {
                 disabled={!selectedSize && product.sizes.length !== 1}
                 className="flex-1 bg-black text-white py-4 text-sm tracking-wider uppercase hover:bg-gray-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
               >
-                Add to Bag
+                Add to Cart
               </button>
               <button
-                onClick={handleAddToWishlist}
+                onClick={handleToggleWishlist}
                 disabled={!selectedSize && product.sizes.length !== 1}
                 className={`px-6 py-4 border transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed ${
                   isProductInWishlist
@@ -149,30 +171,96 @@ export default function ProductPage({ params }) {
             </div>
 
             <div className="border-t border-gray-200 pt-8 pb-8">
-              <h3 className="text-sm font-semibold tracking-wider text-gray-900 mb-4 uppercase">
-                Materials & Care
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                100% Virgin Italian Wool. Lining: 100% Cupro. Dry clean only by specialists. Each piece is hand-finished with horn buttons from Tuscany.
-              </p>
+              <button
+                onClick={() => toggleSection("materials")}
+                className="w-full flex justify-between items-center text-left cursor-pointer"
+              >
+                <h3 className="text-sm font-semibold tracking-wider text-gray-900 uppercase">
+                  Materials & Care
+                </h3>
+                <svg
+                  className={`w-5 h-5 transition-transform ${openSections.materials ? "rotate-180" : ""}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+              {openSections.materials && (
+                <p className="text-gray-600 leading-relaxed mt-4">
+                  100% Virgin Italian Wool. Lining: 100% Cupro. Dry clean only
+                  by specialists. Each piece is hand-finished with horn buttons
+                  from Tuscany.
+                </p>
+              )}
             </div>
 
             <div className="border-t border-gray-200 pt-8 pb-8">
-              <h3 className="text-sm font-semibold tracking-wider text-gray-900 mb-4 uppercase">
-                Shipping & Returns
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                Complimentary express shipping globally. We offer a 30-day return policy on all unworn items in original packaging.
-              </p>
+              <button
+                onClick={() => toggleSection("shipping")}
+                className="w-full flex justify-between items-center text-left cursor-pointer"
+              >
+                <h3 className="text-sm font-semibold tracking-wider text-gray-900 uppercase">
+                  Shipping & Returns
+                </h3>
+                <svg
+                  className={`w-5 h-5 transition-transform ${openSections.shipping ? "rotate-180" : ""}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+              {openSections.shipping && (
+                <p className="text-gray-600 leading-relaxed mt-4">
+                  Complimentary express shipping globally. We offer a 30-day
+                  return policy on all unworn items in original packaging.
+                </p>
+              )}
             </div>
 
             <div className="border-t border-gray-200 pt-8">
-              <h3 className="text-sm font-semibold tracking-wider text-gray-900 mb-4 uppercase">
-                The Atelier Story
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                Aethel was founded on the principle of radical simplicity. Our overcoats are the result of three decades of tailoring expertise combined with modern architectural design principles.
-              </p>
+              <button
+                onClick={() => toggleSection("story")}
+                className="w-full flex justify-between items-center text-left cursor-pointer"
+              >
+                <h3 className="text-sm font-semibold tracking-wider text-gray-900 uppercase">
+                  The Aethel Story
+                </h3>
+                <svg
+                  className={`w-5 h-5 transition-transform ${openSections.story ? "rotate-180" : ""}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+              {openSections.story && (
+                <p className="text-gray-600 leading-relaxed mt-4">
+                  Aethel was founded on the principle of radical simplicity. Our
+                  overcoats are the result of three decades of tailoring
+                  expertise combined with modern architectural design
+                  principles.
+                </p>
+              )}
             </div>
           </div>
         </div>

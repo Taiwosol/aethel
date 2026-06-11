@@ -108,6 +108,9 @@ export default function WishlistPage() {
                   <h3 className="text-lg font-serif text-gray-900 mb-2">
                     {item.product.name}
                   </h3>
+                  <p className="text-sm text-gray-600 mb-1">
+                    Size: {item.size}
+                  </p>
                   <p className="text-sm md:text-base text-gray-700 mb-4">
                     ₦{item.product.price.toLocaleString()}
                   </p>
