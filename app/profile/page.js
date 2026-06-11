@@ -192,7 +192,7 @@ export default function ProfilePage() {
                         <p className="text-sm font-semibold text-gray-900">
                           Total
                         </p>
-                        <p className="text-lg font-bold text-gray-900">
+                        <p className="text-base md:text-lg font-bold text-gray-900">
                           ₦{order.total.toLocaleString()}
                         </p>
                       </div>

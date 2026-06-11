@@ -282,7 +282,9 @@ export default function CheckoutPage() {
                             3 - 5 business days
                           </p>
                         </div>
-                        <p className="text-xl text-gray-900">Complimentary</p>
+                        <p className="text-lg md:text-xl text-gray-900">
+                          Complimentary
+                        </p>
                       </div>
                     </div>
                     <div
@@ -298,7 +300,9 @@ export default function CheckoutPage() {
                             1 - 2 business days
                           </p>
                         </div>
-                        <p className="text-xl text-gray-900">₦2,500</p>
+                        <p className="text-lg md:text-xl text-gray-900">
+                          ₦2,500
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -358,18 +362,18 @@ export default function CheckoutPage() {
                           Qty: {item.quantity}
                         </p>
                       </div>
-                      <p className="text-sm text-gray-900">
+                      <p className="text-xs md:text-sm text-gray-900">
                         ₦{(item.product.price * item.quantity).toLocaleString()}
                       </p>
                     </div>
                   ))}
                 </div>
                 <div className="border-t border-gray-200 pt-6 space-y-3">
-                  <div className="flex justify-between text-sm text-gray-900">
+                  <div className="flex justify-between text-xs md:text-sm text-gray-900">
                     <span>Subtotal</span>
                     <span>₦{subtotal.toLocaleString()}</span>
                   </div>
-                  <div className="flex justify-between text-sm text-gray-900">
+                  <div className="flex justify-between text-xs md:text-sm text-gray-900">
                     <span>Shipping</span>
                     <span>
                       {deliveryMethod === "standard"
@@ -377,7 +381,7 @@ export default function CheckoutPage() {
                         : `₦${deliveryFee.toLocaleString()}`}
                     </span>
                   </div>
-                  <div className="flex justify-between text-xl font-bold text-gray-900 pt-4 border-t border-gray-200">
+                  <div className="flex justify-between text-lg md:text-xl font-bold text-gray-900 pt-4 border-t border-gray-200">
                     <span>Total</span>
                     <span>₦{total.toLocaleString()}</span>
                   </div>

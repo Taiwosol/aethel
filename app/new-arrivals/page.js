@@ -150,7 +150,7 @@ export default function NewArrivalsPage() {
                   </div>
                   <div className="flex justify-between items-center">
                     <p className="text-sm text-gray-900">{product.name}</p>
-                    <p className="text-sm text-gray-900">{product.price}</p>
+                    <p className="text-xs md:text-sm text-gray-900">{product.price}</p>
                   </div>
                 </div>
               ))}

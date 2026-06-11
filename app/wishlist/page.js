@@ -87,7 +87,7 @@ export default function WishlistPage() {
                   </div>
                   <p className="text-xs tracking-widest text-gray-500 mb-2">{item.product.category}</p>
                   <h3 className="text-lg font-serif text-gray-900 mb-2">{item.product.name}</h3>
-                  <p className="text-gray-700 mb-4">₦{item.product.price.toLocaleString()}</p>
+                  <p className="text-sm md:text-base text-gray-700 mb-4">₦{item.product.price.toLocaleString()}</p>
                   <button
                     onClick={() => {
                       addToCart(item.product, item.size);

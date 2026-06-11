@@ -88,7 +88,7 @@ export default function CartPage() {
                         </div>
                       </div>
                       <div className="flex items-center gap-6">
-                        <p className="text-gray-900 font-medium">
+                        <p className="text-sm md:text-base text-gray-900 font-medium">
                           ₦
                           {(
                             item.product.price * item.quantity
@@ -121,7 +121,7 @@ export default function CartPage() {
               <div className="border-t border-gray-200 pt-8">
                 <div className="flex justify-between items-center mb-4">
                   <span className="text-gray-900">SUBTOTAL</span>
-                  <span className="text-gray-900 font-medium">
+                  <span className="text-sm md:text-base text-gray-900 font-medium">
                     ₦{subtotal.toLocaleString()}
                   </span>
                 </div>

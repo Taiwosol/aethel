@@ -189,7 +189,7 @@ export default function OrderCompletePage() {
                               Qty: {item.quantity}
                             </p>
                           </div>
-                          <p className="text-lg text-gray-900">
+                          <p className="text-base md:text-lg text-gray-900">
                             ₦
                             {(
                               item.product.price * item.quantity
@@ -203,11 +203,11 @@ export default function OrderCompletePage() {
                   )}
                 </div>
                 <div className="border-t border-gray-200 pt-8 space-y-4">
-                  <div className="flex justify-between text-gray-600">
+                  <div className="flex justify-between text-sm md:text-base text-gray-600">
                     <span>Subtotal</span>
                     <span>₦{(lastOrder?.subtotal || 0).toLocaleString()}</span>
                   </div>
-                  <div className="flex justify-between text-gray-600">
+                  <div className="flex justify-between text-sm md:text-base text-gray-600">
                     <span>Shipping</span>
                     <span>
                       {lastOrder?.deliveryMethod === "express"
@@ -215,7 +215,7 @@ export default function OrderCompletePage() {
                         : "Complimentary"}
                     </span>
                   </div>
-                  <div className="flex justify-between font-semibold text-gray-900 pt-4 border-t border-gray-200">
+                  <div className="flex justify-between font-semibold text-sm md:text-base text-gray-900 pt-4 border-t border-gray-200">
                     <span>TOTAL</span>
                     <span>₦{(lastOrder?.total || 0).toLocaleString()}</span>
                   </div>
