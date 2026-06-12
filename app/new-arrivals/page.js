@@ -88,8 +88,8 @@ export default function NewArrivalsPage() {
               silent luxury that defines AETHEL.
             </p>
             <div className="grid grid-cols-2 gap-6">
-              <Link href="/collections" className="cursor-pointer">
-                <div className="aspect-square overflow-hidden mb-3">
+              <div>
+                <div className="aspect-square overflow-hidden mb-3 relative">
                   <Image
                     src="/knitwear.jpg"
                     alt="Knitwear"
@@ -98,10 +98,10 @@ export default function NewArrivalsPage() {
                   />
                 </div>
                 <p className="text-sm text-gray-900">The Knitwear Series</p>
-                <p className="text-xs text-gray-500">SHOP NOW</p>
-              </Link>
-              <Link href="/collections" className="cursor-pointer">
-                <div className="aspect-square overflow-hidden mb-3">
+                <Link href="/collections" className="text-xs text-gray-500 cursor-pointer hover:text-gray-900 transition-colors">SHOP NOW</Link>
+              </div>
+              <div>
+                <div className="aspect-square overflow-hidden mb-3 relative">
                   <Image
                     src="/signature-leather.jpg"
                     alt="Leather"
@@ -110,8 +110,8 @@ export default function NewArrivalsPage() {
                   />
                 </div>
                 <p className="text-sm text-gray-900">Signature Leather</p>
-                <p className="text-xs text-gray-500">SHOP NOW</p>
-              </Link>
+                <Link href="/collections" className="text-xs text-gray-500 cursor-pointer hover:text-gray-900 transition-colors">SHOP NOW</Link>
+              </div>
             </div>
           </div>
         </div>
